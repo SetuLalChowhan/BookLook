@@ -23,3 +23,7 @@ body {
 .hover-link:hover::after {
   width: 100%;
 }
+
+.section-padding-x{
+  padding: 0px 48px;
+}
