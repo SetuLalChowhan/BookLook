@@ -39,11 +39,11 @@ const Banner = () => {
 
           <div className="flex items-center gap-6">
             <button 
-              className="shadow-custom px-[34px] py-[14px] flex justify-center items-center border-[1px] border-primary rounded-[12px] text-primary text-lg font-bold font-miriam bg-opacity-[0.18] bg-primary hover:bg-opacity-30 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              className="shadow-custom px-[34px] py-[14px] flex justify-center items-center border-[1px] border-primary rounded-[12px] text-primary text-lg font-bold font-miriam bg-opacity-[0.18] bg-primary transition-all  duration-300 hover:scale-105 group "
               data-aos="fade-up"
               data-aos-delay="400"
             >
-              READ MORE
+              <p className=" ">READ MORE</p>
             </button>
 
             <button 
