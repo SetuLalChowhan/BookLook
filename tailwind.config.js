@@ -20,22 +20,21 @@ export default {
     extend: {
       fontFamily: {
         poppins: "Poppins, serif",
+        beth: "Beth Ellen, cursive",
+        caslon: "Libre Caslon Text, serif",
+        miriam:"Miriam Libre, sans-serif"
       },
       boxShadow: {
-        custom: ""
+        custom: "5px 5px 0px 5px #29030D",
       },
-      borderRadius: {
-       
-      },
+      borderRadius: {},
       colors: {
-        primary: {
-          gradient: 'linear-gradient(180deg, #FFF -5.81%, #707070 124.71%)',
-        },
-     
+        primary:"#FEF1D5",
       },
       backgroundImage: {
         gradientBg: "linear-gradient(180deg, #FFF -5.81%, #707070 124.71%)",
-        gradientBg2: "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%)"
+        gradientBg2:
+          "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%)",
       },
       screens: {
         xs: "390px",
