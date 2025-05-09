@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <section>
       <div
-        className={`bg-cover bg-center bg-no-repeat w-full h-[743px] flex gap-11 pt-20 section-padding-x`}
+        className={`bg-cover bg-center bg-no-repeat w-full h-[743px] flex gap-20 pt-20 section-padding-x`}
         style={{ backgroundImage: `url(${BannerImage})` }}
       >
         <div className="flex flex-col gap-[60px] w-[50%] items-start">
@@ -39,7 +39,7 @@ const Banner = () => {
 
           <div className="flex items-center gap-6">
             <button 
-              className="shadow-custom px-[34px] py-[14px] flex justify-center items-center border-[1px] border-primary rounded-[12px] text-primary text-lg font-bold font-miriam bg-opacity-[0.18] bg-primary transition-all  duration-300 hover:scale-105 group "
+              className="shadow-2xl px-[34px] py-[14px] flex justify-center items-center border-[1px] border-primary rounded-[12px] text-primary text-lg font-bold font-miriam bg-opacity-[0.10] bg-primary transition-all  duration-300 hover:scale-105 group "
               data-aos="fade-up"
               data-aos-delay="400"
             >

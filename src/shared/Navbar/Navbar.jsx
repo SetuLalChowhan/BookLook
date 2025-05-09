@@ -150,8 +150,8 @@ const Navbar = () => {
         </span>
         <input
           type="text"
-          placeholder="Search"
-          className="bg-transparent outline-none text-[#FEF1D5] placeholder-[#FEF1D5] text-base font-normal"
+          placeholder="Search Books"
+          className="bg-transparent outline-none text-[#FEF1D5] placeholder-[#FEF1D5] placeholder-opacity-50 text-base font-normal"
         />
       </div>
     </div>

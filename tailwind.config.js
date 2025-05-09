@@ -22,7 +22,9 @@ export default {
         poppins: "Poppins, serif",
         beth: "Beth Ellen, cursive",
         caslon: "Libre Caslon Text, serif",
-        miriam:"Miriam Libre, sans-serif"
+        miriam:"Miriam Libre, sans-serif",
+        inter: "Inter, sans-serif",
+        dm: "DM Serif Display, seri",
       },
       boxShadow: {
         custom: "5px 5px 0px 5px #29030D",

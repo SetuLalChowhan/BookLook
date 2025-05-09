@@ -10,8 +10,8 @@ const SublinkSection = ({ items }) => {
           to={item.link}
           className={({ isActive }) =>
             `${
-              isActive ? "text-[#E7B24E]" : "text-black hover:text-black "
-            } text-sm font-normal hover-link relative`
+              isActive ? "text-[#E7B24E]" : ""
+            } text-sm font-normal hover:text-black hover:font-medium  relative`
           }
         >
           {item.title}
