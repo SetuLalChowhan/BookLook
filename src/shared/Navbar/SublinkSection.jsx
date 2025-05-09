@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const SublinkSection = ({ items }) => {
   return (
-    <div className=" flex flex-col gap-3 w-[180px] items-start">
+    <div className=" flex flex-col gap-3 w-[180px] items-start ">
       {items?.map((item, index) => (
         <NavLink
           key={index}

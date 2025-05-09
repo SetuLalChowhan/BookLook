@@ -108,6 +108,7 @@ const Navbar = () => {
               content={<SublinkSection items={item.sublinks} />}
               trigger="hover"
               placement="bottom"
+              color="#F8D34E"
               open={openPopover === index}
               onOpenChange={(visible) => setOpenPopover(visible ? index : null)}
             >
