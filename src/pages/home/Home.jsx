@@ -1,3 +1,4 @@
+import AudioBook from "@/components/home/AudioBook";
 import Banner from "@/components/home/Banner";
 import BestSellingSlider from "@/components/home/BestSellingSlider";
 import BookGroup from "@/components/home/BookGroup";
@@ -11,6 +12,7 @@ const Home = () => {
       <BookSlider1/>
       <BestSellingSlider/>
       <BookGroup/>
+      <AudioBook/>
     </div>
   );
 };

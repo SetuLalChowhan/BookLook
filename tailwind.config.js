@@ -35,8 +35,8 @@ export default {
       },
       backgroundImage: {
         gradientBg: "linear-gradient(180deg, #FFF -5.81%, #707070 124.71%)",
-        gradientBg2:
-          "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%)",
+        customBg:
+          "linear-gradient(180deg, #DB7509 0%, #F6F1E9 100%)",
       },
       screens: {
         xs: "390px",
