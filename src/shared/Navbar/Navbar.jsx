@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Popover } from "antd";
 import SublinkSection from "./SublinkSection";
 import { NavLink } from "react-router-dom";
@@ -94,14 +94,132 @@ const Navbar = () => {
     },
   ];
 
-  
+   const [selectedLanguage, setSelectedLanguage] = useState(
+    localStorage.getItem("selectedLanguage") || "en"
+  );
+  const [googleTranslateLoaded, setGoogleTranslateLoaded] = useState(false);
+  const googleTranslateRef = useRef(null);
+
+  const languages = [
+    { code: "en", name: "English" },
+    { code: "bn", name: "Bengali" },
+    { code: "es", name: "Spanish" },
+    { code: "fr", name: "French" },
+    { code: "de", name: "German" },
+    { code: "ar", name: "Arabic" },
+    { code: "zh-CN", name: "Chinese" },
+    { code: "hi", name: "Hindi" },
+    { code: "ja", name: "Japanese" },
+  ];
+
+  useEffect(() => {
+    const initializeGoogleTranslate = () => {
+      window.googleTranslateElementInit = () => {
+        googleTranslateRef.current =
+          new window.google.translate.TranslateElement(
+            {
+              pageLanguage: "en",
+              includedLanguages: languages.map((lang) => lang.code).join(","),
+              layout:
+                window.google.translate.TranslateElement.InlineLayout
+                  .HORIZONTAL,
+              autoDisplay: false,
+            },
+            "google_translate_element"
+          );
+
+        // Set the initial language from our state
+        setTimeout(() => {
+          const select = document.querySelector(".goog-te-combo");
+          if (select) {
+            select.value = selectedLanguage;
+            const event = new Event("change", { bubbles: true });
+            select.dispatchEvent(event);
+          }
+        }, 500);
+
+        setGoogleTranslateLoaded(true);
+      };
+
+      if (!window.google || !window.google.translate) {
+        const script = document.createElement("script");
+        script.src =
+          "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        script.async = true;
+        document.body.appendChild(script);
+      } else {
+        window.googleTranslateElementInit();
+      }
+    };
+
+    initializeGoogleTranslate();
+
+    return () => {
+      if (window.googleTranslateElementInit) {
+        delete window.googleTranslateElementInit;
+      }
+    };
+  }, []);
+
+  // Handle language change from our custom select
+  const handleLanguageChange = (e) => {
+    const langCode = e.target.value;
+    setSelectedLanguage(langCode);
+    localStorage.setItem("selectedLanguage", langCode);
+
+    if (window.google && window.google.translate) {
+      const select = document.querySelector(".goog-te-combo");
+      if (select) {
+        select.value = langCode;
+        const event = new Event("change", { bubbles: true });
+        select.dispatchEvent(event);
+
+        // Fallback method if the event doesn't trigger translation
+        setTimeout(() => {
+          if (!document.body.classList.contains(`translated-${langCode}`)) {
+            if (window.google.translate.translatePage) {
+              window.google.translate.translatePage(langCode);
+            }
+          }
+        }, 300);
+      }
+      if(selectedLanguage ){
+        window.location.reload();
+      }
+      // if (langCode === 'en') {
+      //   const select = document.querySelector(".goog-te-combo");
+      //   if (select) {
+      //     select.value = 'en';
+      //     const event = new Event("change", { bubbles: true });
+      //     select.dispatchEvent(event);
+      //   }
+      // }
+    }
+  };
+
+  useEffect(() => {
+    const checkCurrentTranslation = () => {
+      for (const lang of languages) {
+        if (document.body.classList.contains(`translated-${lang.code}`)) {
+          setSelectedLanguage(lang.code);
+          localStorage.setItem("selectedLanguage", lang.code);
+          return;
+        }
+      }
+    };
+
+    // Run immediately and also after a delay
+    checkCurrentTranslation();
+    const timer = setTimeout(checkCurrentTranslation, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="py-6 px-11 bg-[#18443C] flex justify-between gap-5 items-center">
       <nav
         className="flex items-center gap-7"
-        data-aos="fade-down"
-        data-aos-delay="200"
+    
       >
         {navLinks.map((item, index) =>
           item.sublinks ? (
@@ -143,10 +261,36 @@ const Navbar = () => {
         )}
       </nav>
 
+       <div className="language-selector">
+                {/* Hidden Google Translate Element */}
+                <div
+                  id="google_translate_element"
+                  style={{ display: "none" }}
+                ></div>
+
+                {/* Custom Select Dropdown */}
+                <select
+                  translate="no"
+                  value={selectedLanguage}
+                  onChange={handleLanguageChange}
+                  className="custom-language-select"
+                  disabled={!googleTranslateLoaded}
+                >
+                  {languages.map((language) => (
+                    <option
+                      translate="no"
+                      key={language.code}
+                      value={language.code}
+                    >
+                      {language.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
       <div
         className="max-w-[300px] rounded-[12px] bg-[#ABBF96]/30 px-4 py-2 flex items-center gap-2"
-        data-aos="fade-down"
-        data-aos-delay="200"
+        
       >
         <span>
           <IoIosSearch color="#FEF1D5" />
