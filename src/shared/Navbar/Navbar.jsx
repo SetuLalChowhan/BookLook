@@ -161,6 +161,9 @@ const Navbar = () => {
     };
   }, []);
 
+
+
+
   // Handle language change from our custom select
   const handleLanguageChange = (e) => {
     const langCode = e.target.value;

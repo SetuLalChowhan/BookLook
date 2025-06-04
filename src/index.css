@@ -69,6 +69,37 @@ body {
   display: none !important;
 }
 
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+/* Hide Google Translate banner */
+#goog-gt-tt,
+.goog-te-banner-frame,
+.goog-logo-link,
+.goog-te-gadget {
+  display: none !important;
+}
+/* Prevent iframe balloon from affecting layout */
+iframe.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Remove background highlight on translated text */
+.goog-te-gadget span,
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+/* Ensure text looks natural */
+.goog-text-highlight {
+  background-color: transparent !important;
+}
+
 /* Mobile specific styles */
 /* @media (max-width: 768px) {
   #google_translate_element {
@@ -171,3 +202,4 @@ body{
   display: flex;
   align-items: center;
 }
+
