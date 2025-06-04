@@ -94,6 +94,8 @@ const Navbar = () => {
     },
   ];
 
+  
+
   return (
     <div className="py-6 px-11 bg-[#18443C] flex justify-between gap-5 items-center">
       <nav
