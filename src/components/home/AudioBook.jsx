@@ -327,7 +327,7 @@ const AudioBook = () => {
           >
             <motion.img 
               src={StoreImage} 
-              className="w-full h-auto block rounded-lg shadow-xl"
+              className="w-full h-auto block rounded-lg "
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 300 }}
             />
@@ -343,8 +343,8 @@ const AudioBook = () => {
             {storeInfo.map((store, index) => (
               <motion.div 
                 key={store.id}
-                className="flex flex-col gap-6 p-6 bg-white/10 backdrop-blur-sm rounded-lg"
-                whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
+                className="flex flex-col gap-6 p-6  rounded-lg"
+                whileHover={{ scale: 1.02,  }}
                 transition={{ duration: 0.3 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
