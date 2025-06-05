@@ -22,14 +22,12 @@ const NotFoundPage = () => {
       {/* Main Content */}
       <div 
         className="relative z-10 max-w-2xl"
-        data-aos="fade-up"
-        data-aos-delay="300"
+       
       >
         {/* Animated Construction Icon */}
         <div 
           className="mb-8 text-[#E5E034]"
-          data-aos="bounce"
-          data-aos-duration="1000"
+        
         >
           <MdConstruction className="text-8xl" />
         </div>
@@ -52,8 +50,7 @@ const NotFoundPage = () => {
           <button
             onClick={() => navigate('/')}
             className="shadow-custom px-[34px] py-[14px] flex justify-center items-center border-[1px] border-primary rounded-[12px] text-primary text-lg font-bold font-miriam bg-opacity-[0.18] bg-primary hover:bg-opacity-30 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            data-aos="fade-up"
-            data-aos-delay="500"
+            
           >
             RETURN TO SHELF
           </button>
@@ -63,8 +60,7 @@ const NotFoundPage = () => {
       {/* Footer */}
       <div 
         className="absolute bottom-10 text-[#FEF1D5] text-opacity-70 text-sm font-poppins z-10"
-        data-aos="fade-up"
-        data-aos-delay="700"
+    
       >
         © {new Date().getFullYear()} BOI. · All stories reserved
       </div>

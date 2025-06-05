@@ -4,13 +4,13 @@ import bs2 from "@/assets/images/bs2.png";
 import bs3 from "@/assets/images/bs3.png";
 import bs4 from "@/assets/images/bs4.png";
 import bs5 from "@/assets/images/bs5.png";
-import { Link } from "react-router-dom";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import "swiper/css";
-import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import Rating from "../common/icons/Rating";
+import { motion } from "framer-motion";
 
 const BestSellingSlider = () => {
   const bestSellingBooks = [
@@ -94,47 +94,9 @@ const BestSellingSlider = () => {
       rating: 5,
       price: 84.78,
     },
-    {
-      id: 1,
-      image: bs1,
-      name: "Harlem Rhapsody",
-      text: "by Victoria Christopher Murray",
-      rating: 5,
-      price: 84.78,
-    },
-    {
-      id: 2,
-      image: bs2,
-      name: "Three Days In June",
-      text: "by  Anne Tyler",
-      rating: 5,
-      price: 34.99,
-    },
-    {
-      id: 3,
-      image: bs3,
-      name: "We All Live Here",
-      text: "by  Jojo Moyes",
-      rating: 5,
-      price: 15.99,
-    },
-    {
-      id: 4,
-      image: bs4,
-      name: "Good Dirt",
-      text: "by Charmaine Wilkerson",
-      rating: 5,
-      price: 84.99,
-    },
-    {
-      id: 5,
-      image: bs5,
-      name: "And Then There Were None",
-      text: "by Agatha Christie",
-      rating: 5,
-      price: 84.78,
-    },
+    // repeated items can be here if needed...
   ];
+
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const prevRef = useRef(null);
@@ -154,12 +116,11 @@ const BestSellingSlider = () => {
       setIsEnd(swiperRef.current.swiper.isEnd);
     }
   }, []);
+
   return (
-    <div className=" bg-[#F8D34E] py-12 section-padding-x flex flex-col gap-11">
-      <div className=" flex items-center justify-center text-center">
-        <p className="text-[#000] font-medium text-[32px]">
-          BEST SELLING BOOKS
-        </p>
+    <div className="bg-[#F8D34E] py-12 section-padding-x flex flex-col gap-11">
+      <div className="flex items-center justify-center text-center">
+        <p className="text-[#000] font-medium text-[32px]">BEST SELLING BOOKS</p>
       </div>
 
       <div className="w-full overflow-hidden relative">
@@ -195,7 +156,6 @@ const BestSellingSlider = () => {
             swiper.params.navigation.nextEl = nextRef.current;
             swiper.navigation.init();
             swiper.navigation.update();
-            // Initialize the state
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
           }}
@@ -208,33 +168,37 @@ const BestSellingSlider = () => {
           }}
         >
           {bestSellingBooks.map((item, index) => (
-            <SwiperSlide key={index} className=" !w-[200px] ">
-              <div className=" flex flex-col gap-6">
-                <div className=" h-[301px] group overflow-hidden duration-200 hover:scale-[1.05] ">
+            <SwiperSlide key={`${item.id}-${index}`} className="!w-[200px]">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{  duration: 0.3, ease: "easeOut" }}
+                whileHover={{ scale: 1.05 }}
+                className="flex flex-col gap-6 cursor-pointer"
+              >
+                <div className="h-[301px] overflow-hidden duration-200">
                   <img
-                    className=" w-full h-full object-cover duration-200 "
-                    src={item?.image}
-                    alt={item?.title}
+                    className="w-full h-full object-cover duration-200"
+                    src={item.image}
+                    alt={item.name}
                   />
                 </div>
 
-                <div className=" flex flex-col gap-2">
-                  <p className="text-[#000] font-normal text-lg italic">
-                    {item?.name}
-                  </p>
+                <div className="flex flex-col gap-2">
+                  <p className="text-[#000] font-normal text-lg italic">{item.name}</p>
                   <p className="font-inter text-xs font-normal text-[rgba(0, 0, 0, 0.67)]">
-                    {item?.text}
+                    {item.text}
                   </p>
                   <div className="flex gap-1 text-yellow-500">
                     {Array.from({ length: item.rating }).map((_, i) => (
-                      <span key={index}><Rating/></span>
+                      <span key={i}>
+                        <Rating />
+                      </span>
                     ))}
                   </div>
-                  <p className="text-[#000] text-lg font-normal">
-                    ${item.price}
-                  </p>
+                  <p className="text-[#000] text-lg font-normal">${item.price}</p>
                 </div>
-              </div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>

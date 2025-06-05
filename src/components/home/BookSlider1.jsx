@@ -11,99 +11,24 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { motion } from "framer-motion";
+
 const BookSlider1 = () => {
   const books = [
-    {
-      id: 1,
-      image: b1,
-      title: "Romance",
-    },
-    {
-      id: 2,
-      image: b2,
-      title: "Thriller",
-    },
-    {
-      id: 3,
-      image: b3,
-      title: "Self-help",
-    },
-    {
-      id: 4,
-      image: b4,
-      title: "Comedy",
-    },
-    {
-      id: 5,
-      image: b5,
-      title: "Horror",
-    },
-    {
-      id: 6,
-      image: b5,
-      title: "Biography",
-    },
-    {
-      id: 1,
-      image: b1,
-      title: "Romance",
-    },
-    {
-      id: 2,
-      image: b2,
-      title: "Thriller",
-    },
-    {
-      id: 3,
-      image: b3,
-      title: "Self-help",
-    },
-    {
-      id: 4,
-      image: b4,
-      title: "Comedy",
-    },
-    {
-      id: 5,
-      image: b5,
-      title: "Horror",
-    },
-    {
-      id: 6,
-      image: b5,
-      title: "Biography",
-    },
-    {
-      id: 1,
-      image: b1,
-      title: "Romance",
-    },
-    {
-      id: 2,
-      image: b2,
-      title: "Thriller",
-    },
-    {
-      id: 3,
-      image: b3,
-      title: "Self-help",
-    },
-    {
-      id: 4,
-      image: b4,
-      title: "Comedy",
-    },
-    {
-      id: 5,
-      image: b5,
-      title: "Horror",
-    },
-    {
-      id: 6,
-      image: b5,
-      title: "Biography",
-    },
+    { id: 1, image: b1, title: "Romance" },
+    { id: 2, image: b2, title: "Thriller" },
+    { id: 3, image: b3, title: "Self-help" },
+    { id: 4, image: b4, title: "Comedy" },
+    { id: 5, image: b5, title: "Horror" },
+    { id: 6, image: b6, title: "Biography" },
+    { id: 7, image: b1, title: "Romance" },
+    { id: 8, image: b2, title: "Thriller" },
+    { id: 9, image: b3, title: "Self-help" },
+    { id: 10, image: b4, title: "Comedy" },
+    { id: 11, image: b5, title: "Horror" },
+    { id: 12, image: b6, title: "Biography" },
   ];
+
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const prevRef = useRef(null);
@@ -118,42 +43,64 @@ const BookSlider1 = () => {
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.on("slideChange", handleSlideChange);
-      // Initialize the state based on initial position
       setIsBeginning(swiperRef.current.swiper.isBeginning);
       setIsEnd(swiperRef.current.swiper.isEnd);
     }
   }, []);
+
   return (
-    <div className=" bg-[#F6F1E9] section-padding-x py-12 flex flex-col gap-8">
-      <div className=" flex items-center gap-6 justify-between w-full">
-        <p className=" font-medium text-[32px] text-[#000] font-poppins">
+    <motion.div
+      className="bg-[#F6F1E9] section-padding-x py-12 flex flex-col gap-8"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.4 }}
+    >
+      {/* Header */}
+      <motion.div
+        className="flex items-center gap-6 justify-between w-full"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        viewport={{ once: true }}
+      >
+        <p className="font-medium text-[32px] text-[#000] font-poppins">
           FEATURED CATEGORIES
         </p>
-        <Link to={`#`} className=" flex items-center gap-1">
+        <Link to="#" className="flex items-center gap-1 group">
           <p className="text-[20px] font-inter font-normal">All Categories</p>
-          <span>
+          <motion.span
+            whileHover={{ x: 5 }}
+            transition={{ duration: 0.2 }}
+          >
             <IoIosArrowForward size={20} />
-          </span>
+          </motion.span>
         </Link>
-      </div>
+      </motion.div>
 
+      {/* Slider */}
       <div className="w-full overflow-hidden relative">
-        <button
+        <motion.button
           ref={prevRef}
           className={`absolute top-1/2 left-0 transform -translate-y-1/2 rounded-full bg-white sm:w-[40px] w-[35px] sm:h-[40px] h-[35px] z-50 flex justify-center items-center shadow ${
             isBeginning ? "opacity-0 pointer-events-none" : "opacity-100"
           } transition-opacity duration-200`}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <IoIosArrowBack color="#715A10" size={20} />
-        </button>
-        <button
+        </motion.button>
+
+        <motion.button
           ref={nextRef}
-          className={`absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full sm:w-[40px] w-[35px] sm:h-[40px] h-[35px]  z-50 flex justify-center items-center shadow ${
+          className={`absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full sm:w-[40px] w-[35px] sm:h-[40px] h-[35px] z-50 flex justify-center items-center shadow ${
             isEnd ? "opacity-0 pointer-events-none" : "opacity-100"
           } transition-opacity duration-200`}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <IoIosArrowForward color="#715A10" size={20} />
-        </button>
+        </motion.button>
 
         <Swiper
           ref={swiperRef}
@@ -171,7 +118,6 @@ const BookSlider1 = () => {
             swiper.params.navigation.nextEl = nextRef.current;
             swiper.navigation.init();
             swiper.navigation.update();
-            // Initialize the state
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
           }}
@@ -183,28 +129,40 @@ const BookSlider1 = () => {
             setIsEnd(swiper.isEnd);
           }}
         >
-          {books.map((item, index) => (
-            <SwiperSlide key={index} className=" !w-[160px] " >
-              <div className=" flex flex-col gap-1">
-                <div className=" h-[238px] group overflow-hidden duration-200 hover:scale-[1.05] ">
+          {books.map((item) => (
+            <SwiperSlide key={item.id} className="!w-[160px]">
+              <motion.div
+                className="flex flex-col gap-1"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <motion.div
+                  className="h-[238px] group overflow-hidden"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <img
-                    className=" w-full h-full object-cover duration-200 "
-                    src={item?.image}
-                    alt={item?.title}
+                    className="w-full h-full object-cover"
+                    src={item.image}
+                    alt={item.title}
                   />
-                </div>
-                <p
+                </motion.div>
+                <motion.p
                   className="pl-4 font-dm text-lg font-medium text-[#000]"
                   style={{ textShadow: "1px 1px 0px #768C86" }}
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {item?.title}
-                </p>
-              </div>
+                  {item.title}
+                </motion.p>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

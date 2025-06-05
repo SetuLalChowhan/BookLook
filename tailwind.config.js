@@ -25,6 +25,7 @@ export default {
         miriam:"Miriam Libre, sans-serif",
         inter: "Inter, sans-serif",
         dm: "DM Serif Display, seri",
+        instrument: "Instrument Sans, serif",
       },
       boxShadow: {
         custom: "5px 5px 0px 5px #29030D",

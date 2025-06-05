@@ -219,7 +219,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="py-6 px-11 bg-[#18443C] flex justify-between gap-5 items-center">
+    <div className="py-6 sticky top-0 z-[999] px-11 bg-[#18443C] flex justify-between gap-5 items-center">
       <nav
         className="flex items-center gap-7"
     
